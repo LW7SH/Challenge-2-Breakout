@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://do02gj4a1pe7p"]
+
+[ext_resource type="Texture2D" uid="uid://clfgul15rxueb" path="res://Assets/paddles_and_balls.png" id="1_d60mj"]
+[ext_resource type="Script" uid="uid://4muv4f0e1at4" path="res://Scenes/ball.gd" id="1_ij5cq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ij5cq"]
+radius = 8.3749
+
+[node name="Ball" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_ij5cq")
+speed = 2.0
+
+[node name="BallSprite" type="Sprite2D" parent="."]
+position = Vector2(1.5, -13)
+scale = Vector2(2.70833, 2.875)
+texture = ExtResource("1_d60mj")
+hframes = 8
+vframes = 6
+frame = 5
+
+[node name="BallCollisionShape" type="CollisionShape2D" parent="."]
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CircleShape2D_ij5cq")

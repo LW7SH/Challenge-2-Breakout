@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b35khg0110kut"]
+
+[ext_resource type="Texture2D" uid="uid://cb82jltuml0bb" path="res://Assets/bricks.png" id="1_lvh1d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hqb1c"]
+radius = 4.4
+height = 32.0
+
+[node name="Brick" type="StaticBody2D" groups=["bricks"]]
+
+[node name="BrickSprite" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_lvh1d")
+hframes = 8
+vframes = 6
+
+[node name="BrickHitBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+rotation = 1.5708
+scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_hqb1c")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://du8knhe3f7pgr"]
+
+[ext_resource type="Script" uid="uid://c8iuj7fjedoee" path="res://Scenes/player.gd" id="1_cvnsp"]
+[ext_resource type="Texture2D" uid="uid://clfgul15rxueb" path="res://Assets/paddles_and_balls.png" id="1_v0iea"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvnsp"]
+size = Vector2(32, 10)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(5, 5)
+script = ExtResource("1_cvnsp")
+speed = 40.0
+
+[node name="PaddleSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_v0iea")
+hframes = 6
+vframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_cvnsp")

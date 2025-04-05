@@ -1,0 +1,153 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0jal1cydhkmp"]
+
+[ext_resource type="PackedScene" uid="uid://du8knhe3f7pgr" path="res://Scenes/player.tscn" id="1_h8xao"]
+[ext_resource type="Script" uid="uid://20iwsg2cekv4" path="res://Scenes/game_screen.gd" id="1_kuxdk"]
+[ext_resource type="PackedScene" uid="uid://do02gj4a1pe7p" path="res://Scenes/ball.tscn" id="2_a68iv"]
+[ext_resource type="PackedScene" uid="uid://b35khg0110kut" path="res://Scenes/brick.tscn" id="4_76bm4"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cwsi1"]
+distance = -586.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t5odh"]
+distance = -294.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_xwjjp"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_76bm4"]
+distance = -1281.0
+
+[node name="GameScreen" type="Node2D" node_paths=PackedStringArray("life_label", "score_label", "result_label", "result_timer")]
+script = ExtResource("1_kuxdk")
+life_label = NodePath("UI/Lives")
+score_label = NodePath("UI/Score")
+result_label = NodePath("UI/Result")
+result_timer = NodePath("ResultTimer")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="LeftWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(585, 522)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_cwsi1")
+
+[node name="RightWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(427, 436)
+rotation = -1.5708
+shape = SubResource("WorldBoundaryShape2D_t5odh")
+
+[node name="TopWall" type="CollisionShape2D" parent="Walls"]
+position = Vector2(59, -1)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_xwjjp")
+
+[node name="BottomArea" type="Area2D" parent="Walls"]
+position = Vector2(2, 1)
+
+[node name="BottomAreaCollision" type="CollisionShape2D" parent="Walls/BottomArea"]
+position = Vector2(-1, 7)
+shape = SubResource("WorldBoundaryShape2D_76bm4")
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_h8xao")]
+position = Vector2(342, 1249)
+
+[node name="Ball" parent="Entities" instance=ExtResource("2_a68iv")]
+position = Vector2(345, 706)
+
+[node name="Bricks" type="Node2D" parent="Entities"]
+
+[node name="Brick" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(81, 536)
+
+[node name="Brick2" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(241, 536)
+
+[node name="Brick4" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(81, 485)
+
+[node name="Brick5" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(241, 485)
+
+[node name="Brick7" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(81, 436)
+
+[node name="Brick8" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(241, 436)
+
+[node name="Brick10" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(81, 387)
+
+[node name="Brick11" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(241, 387)
+
+[node name="Brick3" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(79, 339)
+
+[node name="Brick6" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(79, 288)
+
+[node name="Brick9" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(79, 239)
+
+[node name="Brick12" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(79, 190)
+
+[node name="Brick16" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(401, 536)
+
+[node name="Brick17" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(401, 485)
+
+[node name="Brick18" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(401, 436)
+
+[node name="Brick19" parent="Entities/Bricks" instance=ExtResource("4_76bm4")]
+position = Vector2(401, 387)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 717.0
+offset_bottom = 1280.0
+
+[node name="Score" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Score: 0"
+
+[node name="Lives" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Lives: 3"
+
+[node name="Result" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResultTimer" type="Timer" parent="."]
+wait_time = 3.0
+
+[connection signal="body_entered" from="Walls/BottomArea" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="ResultTimer" to="." method="_on_result_timer_timeout"]
